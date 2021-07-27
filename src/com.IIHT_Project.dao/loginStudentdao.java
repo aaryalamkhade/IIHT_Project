@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpSession;
+
 import com.IIHT_Project.model.loginstudent;
 
 public class loginStudentdao
@@ -13,6 +15,7 @@ public class loginStudentdao
 	public boolean validate(loginstudent loginBean) throws ClassNotFoundException {
         boolean status = false;
 
+        
         Class.forName("com.mysql.jdbc.Driver");
 
         try  {
