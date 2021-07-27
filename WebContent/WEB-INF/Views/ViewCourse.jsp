@@ -7,20 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
- <div align="center">
-  <h1>Admin Login Form</h1>
-  <form action="AddCourse" method="post">
-   <table style="with: 80%">
-   
-   </table>
-   <input type="submit" value="AddCourse" />
-  </form>
-  <form action="ViewData.jsp" method="post">
-   <table style="with: 80%">
-   
-   </table>
-   <input type="submit" value="View Data" />
-  </form>
- </div>
+ <h1>ViewCourse</h1>
+  <form action="DisplayCourse.jsp" method="post">
+<input type="submit" value="View COURSE">
+</form>
+<form action="EnrollCourse.jsp" method="post">
+<input type="submit" value="Enroll COURSE">
+</form>
+<h2>welcome<%out.println(session.getAttribute("username")); %></h2>
 </body>
 </html>
