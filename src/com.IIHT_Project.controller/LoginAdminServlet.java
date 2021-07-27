@@ -40,16 +40,18 @@ dispatcher.forward(request,response);
         LoginAdmin loginBean = new LoginAdmin();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
+        HttpSession session=request.getSession();
 
         try {
             if (loginDao.validate(loginBean)) {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
+            	 session.setAttribute("username",username);
             RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/Adminnext1.jsp");
         dispatcher.forward(request,response);
         } else {
                 //HttpSession session = request.getSession();
-                //session.setAttribute("user", username);
+        	
                 response.sendRedirect("LoginAdmin.jsp");
         //System.out.println("wrong");
         }

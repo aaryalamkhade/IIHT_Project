@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.IIHT_Project.dao.loginStudentdao;
 import com.IIHT_Project.model.loginstudent;
@@ -27,6 +28,8 @@ public class loginstudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+			
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/studentLogin.jsp");
 		 dispatcher.forward(request,response);
 
@@ -40,12 +43,14 @@ public class loginstudentServlet extends HttpServlet {
         loginstudent loginBean = new loginstudent();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
+        HttpSession session=request.getSession();	
 
         try {
             if (loginDao.validate(loginBean)) {
                 //HttpSession session = request.getSession();
-                // session.setAttribute("username",username);
-            	RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/loginsuccess.jsp");
+                session.setAttribute("username",username);
+            	
+            	RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/ViewCourse.jsp");
        		 dispatcher.forward(request,response);
             } else {
                 //HttpSession session = request.getSession();
@@ -55,6 +60,6 @@ public class loginstudentServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        
+      
     }
 }
