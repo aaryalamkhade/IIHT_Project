@@ -1,13 +1,13 @@
 package com.IIHT_Project.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import com.IIHT_Project.model.AddCourse;
-import com.IIHT_Project.model.students;
 
 
 
@@ -28,7 +28,12 @@ public class AddCourseDao
 	         
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
-	           preparedStatement.setInt(1, 1);
+	            CallableStatement callSt = null;
+	     	   callSt = connection.prepareCall("begin ? := getCid(); end;");
+	            callSt.registerOutParameter(1, Types.INTEGER);
+	            callSt.execute();
+	           
+	            preparedStatement.setInt(1, callSt.getInt(1)+1);
 	           preparedStatement.setString(2, AddCourse.getC_name());
 	           preparedStatement.setString(3, AddCourse.getC_desc());
 	           preparedStatement.setString(4, AddCourse.getC_fees());

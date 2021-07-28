@@ -1,14 +1,15 @@
 package com.IIHT_Project.dao;
 
 
+import java.sql.CallableStatement;
+
 //import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import java.sql.PreparedStatement;
-
+import java.sql.SQLException;
+import java.sql.Types;
 
 import com.IIHT_Project.model.students;
 
@@ -27,10 +28,15 @@ public int registerEmployee(students employee) throws ClassNotFoundException {
        try  {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orcl","sys as sysdba","system");
-         
+        
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
-           preparedStatement.setInt(1, 1);
+            CallableStatement callSt = null;
+     	   callSt = connection.prepareCall("begin ? := getId(); end;");
+            callSt.registerOutParameter(1, Types.INTEGER);
+            callSt.execute();
+           
+            preparedStatement.setInt(1, callSt.getInt(1)+1);
            preparedStatement.setString(2, employee.getFirst_Name());
            preparedStatement.setString(3, employee.getLast_Name());
            preparedStatement.setString(4, employee.getUsername());
@@ -41,7 +47,7 @@ public int registerEmployee(students employee) throws ClassNotFoundException {
            System.out.println(preparedStatement);
            // Step 3: Execute the query or update query
            result = preparedStatement.executeUpdate();
-
+         
        } catch (SQLException e) {
            // process sql exception
            e.printStackTrace();
