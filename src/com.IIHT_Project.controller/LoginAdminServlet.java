@@ -52,7 +52,8 @@ dispatcher.forward(request,response);
         } else {
                 //HttpSession session = request.getSession();
         	
-                response.sendRedirect("LoginAdmin.jsp");
+        	 RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/LoginAdmin.jsp");
+             dispatcher.forward(request,response);
         //System.out.println("wrong");
         }
         } catch (ClassNotFoundException e) {

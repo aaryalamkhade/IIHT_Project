@@ -55,7 +55,9 @@ public class loginstudentServlet extends HttpServlet {
             } else {
                 //HttpSession session = request.getSession();
                 //session.setAttribute("user", username);
-                response.sendRedirect("studentLogin.jsp");
+            	RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/studentLogin.jsp");
+          		 dispatcher.forward(request,response);
+               
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

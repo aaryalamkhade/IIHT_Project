@@ -64,7 +64,7 @@ public class studentsServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/studentdetails.jsp");
+        RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/views/studentLogin.jsp");
         dispatcher.forward(request,response);
 
 
