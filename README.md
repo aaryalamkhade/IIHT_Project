@@ -1,11 +1,10 @@
 # IIHT_Project
-1.In this project, I created a web application using JSP and servlets and for database connectivity I used JDBC connections 
-and for desiging the webpage I used html and css.
-2.Firstly student has to login which will get validated aginst data in database or
+In this project, I created a web application using JSP and servlets and for database connectivity I used JDBC connections.
+Firstly student has to login which will get validated aginst data in database or
 Students can register themselves 
 and enroll to courses as needed, as well as view information about the courses.
-3.Students can also provide feedback on the courses and applications.
-4.It also has an admin login that can retrieve student information from the DB and 
+Students can also provide feedback on the courses and applications.
+It also has an admin login that can retrieve student information from the DB and 
 add a new course that will be saved in the DB.
 
 
